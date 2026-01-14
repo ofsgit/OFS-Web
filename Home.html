@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>OFS - Building Better Deployments</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #050812;
+      --accent: #6bb6ff;
+      --accent-2: #7cffd4;
+      --text: #eaf0ff;
+      --muted: #9aa3c7;
+    }
+
+    * { box-sizing: border-box; font-family: system-ui, -apple-system, Segoe UI, sans-serif; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* Top Navigation Bar */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8vw;
+      background: #000;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      z-index: 1000;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 32px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 0 12px rgba(107,182,255,.35));
+    }
+
+    .menu {
+      display: flex;
+      gap: 28px;
+    }
+
+    .dropdown {
+      position: relative;
+      font-size: .9rem;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .dropdown span {
+      color: var(--text);
+    }
+
+    .dropdown-content {
+      position: absolute;
+      top: 120%;
+      left: 0;
+      background: rgba(15,20,40,.95);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px;
+      padding: 12px;
+      min-width: 180px;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: .25s ease;
+    }
+
+    .dropdown:hover .dropdown-content {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .dropdown-content div {
+      padding: 8px 10px;
+      border-radius: 8px;
+      color: var(--muted);
+    }
+
+    .dropdown-content div:hover {
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 120px 10vw;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero {
+      background: radial-gradient(900px 400px at 20% 20%, rgba(107,182,255,.15), transparent),
+                  radial-gradient(700px 400px at 80% 80%, rgba(124,255,212,.12), transparent);
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 6vw, 4rem);
+      line-height: 1.1;
+      max-width: 800px;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      max-width: 560px;
+      font-size: 1.15rem;
+      color: var(--muted);
+    }
+
+    .float {
+      position: absolute;
+      font-size: 5rem;
+      font-weight: 800;
+      opacity: .06;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: translateY(40px);
+      transition: transform 1s ease, opacity 1s ease;
+    }
+
+    .float.active {
+      transform: translateY(0);
+      opacity: .1;
+    }
+
+    .panel {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 24px;
+      padding: 40px;
+      backdrop-filter: blur(12px);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .feature {
+      padding: 20px;
+      border-radius: 18px;
+      background: rgba(0,0,0,.25);
+      transform: translateY(40px);
+      opacity: 0;
+      transition: .8s ease;
+    }
+
+    .feature.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .feature h3 { margin: 0 0 6px 0; }
+    .feature p { margin: 0; font-size: .95rem; }
+
+    .center { justify-content: center; text-align: center; }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="logo">
+      <img src="logo.png" alt="Pro Installer Logo">
+    </div>
+    <div class="menu">
+      <div class="dropdown"><span>Product</span>
+        <div class="dropdown-content">
+          <div>Overview</div>
+          <div>Features</div>
+          <div>Security</div>
+        </div>
+      </div>
+      <div class="dropdown"><span>Solutions</span>
+        <div class="dropdown-content">
+          <div>Enterprise</div>
+          <div>Education</div>
+          <div>Remote Deploy</div>
+        </div>
+      </div>
+      <div class="dropdown"><span>About</span>
+        <div class="dropdown-content">
+          <div>Documentation</div>
+          <div>Deployment Guide</div>
+          <div>Support</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="float" style="top:20%;left:10%">Plug and Play.</div>
+    <div class="float" style="top:75%;left:30%">Ready to use.</div>
+
+    <div>
+      <h1>OFS HQ is<br><span>Focused for Better IT Deployments.</span></h1>
+      <p>
+        IT Rethinked. Quick Snap On Deployments, Quick Install, and Long Life Maintenance
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="panel">
+      <h1>Built for<br><span>Focused Execution</span></h1>
+      <p>
+        No clutter. No guesswork. Just a clean, deliberate deployment flow
+        engineered for real environments.
+      </p>
+
+      <div class="features">
+        <div class="feature">
+          <h3>Deterministic Steps</h3>
+          <p>Each phase validated. Each result expected.</p>
+        </div>
+        <div class="feature">
+          <h3>Silent Reliability</h3>
+          <p>Operates quietly in the background without disruption.</p>
+        </div>
+        <div class="feature">
+          <h3>Enterprise Scale</h3>
+          <p>From one machine to thousands.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="center">
+    <div class="float" style="top:30%;left:15%">SECURE</div>
+    <div class="float" style="top:60%;left:65%">CONTROL</div>
+
+    <div>
+      <h1>Deployment<br><span>You Can Trust</span></h1>
+      <p>
+        Designed with security, Privacy Rights, and No Transparent Layer
+      </p>
+    </div>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('active');
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.float, .feature').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
