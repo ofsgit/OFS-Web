@@ -1,277 +1,264 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <title>OFS - Building Better Deployments</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    :root {
-      --bg: #050812;
-      --accent: #6bb6ff;
-      --accent-2: #7cffd4;
-      --text: #eaf0ff;
-      --muted: #9aa3c7;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OFS - Instalasi IT & Servis Elektronik Gratis</title>
 
-    * { box-sizing: border-box; font-family: system-ui, -apple-system, Segoe UI, sans-serif; }
+<style>
+:root {
+  --bg: #050812;
+  --card: rgba(255,255,255,.04);
+  --accent: #6bb6ff;
+  --accent2: #7cffd4;
+  --text: #eaf0ff;
+  --muted: #9aa3c7;
+}
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-    }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+}
 
-    /* Top Navigation Bar */
-    .topbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 8vw;
-      background: #000;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      z-index: 1000;
-    }
+body {
+  background: var(--bg);
+  color: var(--text);
+}
 
-    .logo {
-      display: flex;
-      align-items: center;
-    }
+/* NAVBAR */
+.topbar {
+  position: fixed;
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  background: rgba(0,0,0,.8);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+}
 
-    .logo img {
-      height: 32px;
-      width: auto;
-      display: block;
-    }
+.logo img {
+  height: 32px;
+}
 
-    .menu {
-      display: flex;
-      gap: 28px;
-    }
+/* MENU */
+.menu {
+  display: flex;
+  gap: 24px;
+}
 
-    .dropdown {
-      position: relative;
-      font-size: .9rem;
-      color: var(--muted);
-      cursor: pointer;
-    }
+.menu a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .95rem;
+}
 
-    .dropdown span {
-      color: var(--text);
-    }
+.menu a:hover {
+  color: var(--text);
+}
 
-    .dropdown-content {
-      position: absolute;
-      top: 120%;
-      left: 0;
-      background: rgba(15,20,40,.95);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 14px;
-      padding: 12px;
-      min-width: 180px;
-      opacity: 0;
-      transform: translateY(10px);
-      pointer-events: none;
-      transition: .25s ease;
-    }
+/* MOBILE MENU */
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
 
-    .dropdown:hover .dropdown-content {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
+.mobile-menu {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 100%;
+  background: #000;
+  display: none;
+  flex-direction: column;
+  padding: 20px;
+}
 
-    .dropdown-content div {
-      padding: 8px 10px;
-      border-radius: 8px;
-      color: var(--muted);
-    }
+.mobile-menu a {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  color: var(--text);
+  text-decoration: none;
+}
 
-    .dropdown-content div:hover {
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-    }
+/* SECTIONS */
+section {
+  min-height: 100vh;
+  padding: 100px 6vw;
+  display: flex;
+  align-items: center;
+}
 
-    section {
-      min-height: 100vh;
-      padding: 120px 10vw;
-      display: flex;
-      align-items: center;
-      position: relative;
-    }
+.hero {
+  background:
+    radial-gradient(800px 400px at 20% 20%, rgba(107,182,255,.15), transparent),
+    radial-gradient(600px 300px at 80% 80%, rgba(124,255,212,.12), transparent);
+}
 
-    .hero {
-      background: radial-gradient(900px 400px at 20% 20%, rgba(107,182,255,.15), transparent),
-                  radial-gradient(700px 400px at 80% 80%, rgba(124,255,212,.12), transparent);
-    }
+/* TEXT */
+h1 {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  line-height: 1.2;
+  max-width: 800px;
+}
 
-    h1 {
-      font-size: clamp(2.6rem, 6vw, 4rem);
-      line-height: 1.1;
-      max-width: 800px;
-    }
+h1 span {
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-    h1 span {
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+p {
+  margin-top: 16px;
+  max-width: 550px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
 
-    p {
-      max-width: 560px;
-      font-size: 1.15rem;
-      color: var(--muted);
-    }
+/* CARDS */
+.panel {
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 20px;
+  padding: 30px;
+  width: 100%;
+}
 
-    .float {
-      position: absolute;
-      font-size: 5rem;
-      font-weight: 800;
-      opacity: .06;
-      pointer-events: none;
-      white-space: nowrap;
-      transform: translateY(40px);
-      transition: transform 1s ease, opacity 1s ease;
-    }
+.features {
+  margin-top: 24px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
 
-    .float.active {
-      transform: translateY(0);
-      opacity: .1;
-    }
+.feature {
+  background: rgba(0,0,0,.3);
+  padding: 20px;
+  border-radius: 16px;
+  transition: .4s;
+}
 
-    .panel {
-      background: rgba(255,255,255,.03);
-      border: 1px solid rgba(255,255,255,.06);
-      border-radius: 24px;
-      padding: 40px;
-      backdrop-filter: blur(12px);
-    }
+.feature:hover {
+  transform: translateY(-5px);
+}
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-      margin-top: 32px;
-    }
+.feature h3 {
+  margin-bottom: 6px;
+}
 
-    .feature {
-      padding: 20px;
-      border-radius: 18px;
-      background: rgba(0,0,0,.25);
-      transform: translateY(40px);
-      opacity: 0;
-      transition: .8s ease;
-    }
+/* CENTER SECTION */
+.center {
+  text-align: center;
+  justify-content: center;
+}
 
-    .feature.active {
-      transform: translateY(0);
-      opacity: 1;
-    }
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+  }
 
-    .feature h3 { margin: 0 0 6px 0; }
-    .feature p { margin: 0; font-size: .95rem; }
-
-    .center { justify-content: center; text-align: center; }
-  </style>
+  .hamburger {
+    display: block;
+  }
+}
+</style>
 </head>
+
 <body>
 
-  <div class="topbar">
-    <div class="logo">
-      <img src="logo.png" alt="Pro Installer Logo">
-    </div>
-    <div class="menu">
-      <div class="dropdown"><span>Product</span>
-        <div class="dropdown-content">
-          <div>Overview</div>
-          <div>Features</div>
-          <div>Maintain</div>
-        </div>
+<!-- NAV -->
+<div class="topbar">
+  <div class="logo">
+    <img src="logo.png" alt="Logo OFS">
+  </div>
+
+  <div class="menu">
+    <a href="#">Layanan</a>
+    <a href="#">Instalasi</a>
+    <a href="#">Bantuan</a>
+    <a href="#">Kontak</a>
+  </div>
+
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#">Layanan</a>
+  <a href="#">Instalasi</a>
+  <a href="#">Bantuan</a>
+  <a href="#">Kontak</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <h1>
+      Instalasi IT Profesional<br>
+      <span>& Servis Elektronik Gratis</span>
+    </h1>
+    <p>
+      Kami menyediakan jasa instalasi, perbaikan, dan optimasi berbagai perangkat —
+      dari PC, jaringan, hingga sistem pintar. Cepat, rapi, dan tanpa biaya servis.
+    </p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section>
+  <div class="panel">
+    <h1>Apa yang Kami Lakukan<br><span>Untuk Semua Perangkat</span></h1>
+    <p>
+      Untuk rumah, sekolah, maupun bisnis — kami menangani instalasi dan perbaikan
+      dengan presisi dan profesional.
+    </p>
+
+    <div class="features">
+      <div class="feature">
+        <h3>Instalasi IT</h3>
+        <p>Setup jaringan, instal OS, server, dan konfigurasi sistem lengkap.</p>
       </div>
-      <div class="dropdown"><span>Solutions</span>
-        <div class="dropdown-content">
-          <div>Enterprise</div>
-          <div>Education</div>
-          <div>Remote Deploy</div>
-        </div>
+
+      <div class="feature">
+        <h3>Servis Gratis</h3>
+        <p>Kami cek dan perbaiki HP, laptop, dan perangkat elektronik tanpa biaya jasa.</p>
       </div>
-      <div class="dropdown"><span>About</span>
-        <div class="dropdown-content">
-          <div>Documentation</div>
-          <div>Deployment Guide</div>
-          <div>Support</div>
-        </div>
+
+      <div class="feature">
+        <h3>Optimasi Perangkat</h3>
+        <p>Meningkatkan performa perangkat agar lebih cepat dan stabil.</p>
+      </div>
+
+      <div class="feature">
+        <h3>Semua Jenis Device</h3>
+        <p>Dari smartphone, komputer, hingga perangkat IoT dan lainnya.</p>
       </div>
     </div>
   </div>
+</section>
 
-  <section class="hero">
-    <div class="float" style="top:10%;left:10%">Plug and Play.</div>
-    <div class="float" style="top:75%;left:30%">Ready to use.</div>
+<!-- TRUST -->
+<section class="center">
+  <div>
+    <h1>Layanan Terpercaya<br><span>Yang Bisa Diandalkan</span></h1>
+    <p>
+      Transparan, jujur, dan berpengalaman — tanpa biaya tersembunyi,
+      tanpa upgrade yang tidak perlu.
+    </p>
+  </div>
+</section>
 
-    <div>
-      <h1>OFS HQ is<br><span>Focused for Better IT Deployments.</span></h1>
-      <p>
-        IT Rethinked. Quick Snap On Deployments, Quick Install, and Long Life Maintenance
-      </p>
-    </div>
-  </section>
-
-  <section>
-    <div class="panel">
-      <h1>Built for<br><span>Focused Execution</span></h1>
-      <p>
-        No clutter. No guesswork. Just a clean, deliberate deployment flow
-        engineered for real environments.
-      </p>
-
-      <div class="features">
-        <div class="feature">
-          <h3>Deterministic Steps</h3>
-          <p>Each phase validated. Each result expected.</p>
-        </div>
-        <div class="feature">
-          <h3>Silent Reliability</h3>
-          <p>Operates quietly in the background without disruption.</p>
-        </div>
-        <div class="feature">
-          <h3>Enterprise Scale</h3>
-          <p>From one machine to thousands.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="center">
-    <div class="float" style="top:30%;left:15%">SECURE</div>
-    <div class="float" style="top:60%;left:65%">CONTROL</div>
-
-    <div>
-      <h1>Deployment<br><span>You Can Trust.</span></h1>
-      <p>
-        Designed with security, Privacy Rights, and No Transparent Layer between User and Installer
-      </p>
-    </div>
-  </section>
-
-  <script>
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('active');
-      });
-    }, { threshold: 0.2 });
-
-    document.querySelectorAll('.float, .feature').forEach(el => observer.observe(el));
-  </script>
+<script>
+function toggleMenu() {
+  const menu = document.getElementById("mobileMenu");
+  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}
+</script>
 
 </body>
 </html>
-
-
-
-
