@@ -26,7 +26,27 @@ body {
   background: var(--bg);
   color: var(--text);
 }
+/*Logo Text*/
+  .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
+.brand-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* Make it smaller on mobile */
+@media (max-width: 480px) {
+  .brand-text {
+    font-size: 0.85rem;
+  }
+}
+  
 /* NAVBAR */
 .topbar {
   position: fixed;
@@ -184,7 +204,10 @@ p {
     <a href="#">Bantuan</a>
     <a href="#">Kontak</a>
   </div>
-
+  <div class="logo">
+  <img src="logo.png" alt="Logo OFS">
+  <span class="brand-text">Formly QuickSolutions</span>
+</div>
   <div class="hamburger" onclick="toggleMenu()">☰</div>
 </div>
 
